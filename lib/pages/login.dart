@@ -1,3 +1,5 @@
+import 'package:carros/pages/widgets/app_button.dart';
+import 'package:carros/pages/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -31,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
         padding: EdgeInsets.all(16),
         child: ListView(
           children: [
-            _text('Login', 'Digite o login',
+            AppText('Login', 'Digite o login',
                 controller: _tLogin,
                 validator: _validateLogin,
                 KeyboardType:TextInputType.text,
@@ -41,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 10,
             ),
-            _text('Senha', 'Digite a senha',
+            AppText('Senha', 'Digite a senha',
                 obscure: true, controller: _tSenha,
                 validator: _validateSenha,
                 KeyboardType:TextInputType.number,
@@ -50,56 +52,12 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 20,
             ),
-            _button('Login', () {
+            AppButton('Login', () {
               return _onClickLogin(context);
             })
           ],
         ),
       ),
-    );
-  }
-
-  TextFormField _text(
-    String label,
-    String hint, {
-    bool obscure = false,
-    required TextEditingController controller,
-    required FormFieldValidator<String> validator,
-        required TextInputType KeyboardType,
-        required TextInputAction textInputAction,
-        FocusNode? focusNode,
-  }) {
-    return TextFormField(
-      focusNode: focusNode,
-      keyboardType: KeyboardType,
-      textInputAction: textInputAction,
-      validator: validator,
-      controller: controller,
-      obscureText: obscure,
-      style: TextStyle(fontSize: 20, color: Colors.blue),
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(fontSize: 20, color: Colors.grey),
-        hintText: hint,
-        hintStyle: TextStyle(
-          fontSize: 15,
-        ),
-      ),
-    );
-  }
-
-  Container _button(String text, Function onPressed) {
-    return Container(
-      height: 46,
-      child: RaisedButton(
-          onPressed: () {
-            return onPressed();
-          },
-          color: Colors.blue,
-          child:
-              Text(text, style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22))),
     );
   }
 
@@ -125,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
       return 'Digite a senha';
     }
     if (value.length < 3) {
-      return 'A senha precisa ter pelo menos 3 caracteres';
+      return 'A senha precisa ter pelo menos 4 caracteres';
     }
   }
 }
