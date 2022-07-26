@@ -9,6 +9,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Carros'),
+        centerTitle: true,
       ),
       body: _body(),
     );
@@ -16,7 +17,7 @@ class LoginPage extends StatelessWidget {
 
   _body() {
     return Container(
-        color: Colors.red
+        //color: Colors.red
     );
   }
 }
