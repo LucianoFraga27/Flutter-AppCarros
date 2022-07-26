@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final _tLogin = TextEditingController();
+  final _tSenha = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,33 +20,24 @@ class LoginPage extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: ListView(
         children: [
-          _text('Login', 'Digite o login'),
+          _text('Login', 'Digite o login', controller: _tLogin),
           SizedBox(
             height: 10,
           ),
-          _text('Senha', 'Digite a senha', obscure: true),
+          _text('Senha', 'Digite a senha', obscure: true, controller: _tSenha),
           SizedBox(
             height: 20,
           ),
-          _button('Login')
+          _button('Login', _onClickLogin)
         ],
       ),
     );
   }
 
-  Container _button(String text) {
-    return Container(
-      height: 46,
-      child: RaisedButton(
-          onPressed: () {},
-          color: Colors.blue,
-          child:
-              Text(text, style: TextStyle(color: Colors.white, fontSize: 22))),
-    );
-  }
-
-  TextFormField _text(String label, String hint, {bool obscure = false}) {
+  TextFormField _text(String label, String hint,
+      {bool obscure = false, required TextEditingController controller}) {
     return TextFormField(
+      controller: controller,
       obscureText: obscure,
       style: TextStyle(fontSize: 20, color: Colors.blue),
       decoration: InputDecoration(
@@ -57,5 +49,24 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Container _button(String text, Function onPressed) {
+    return Container(
+      height: 46,
+      child: RaisedButton(
+          onPressed: () {
+            return onPressed();
+          },
+          color: Colors.blue,
+          child:
+              Text(text, style: TextStyle(color: Colors.white, fontSize: 22))),
+    );
+  }
+
+  _onClickLogin() {
+    String login = _tLogin.text;
+    String senha = _tSenha.text;
+    print("Login: $login | Senha: $senha");
   }
 }
