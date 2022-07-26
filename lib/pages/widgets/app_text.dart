@@ -29,6 +29,9 @@ class AppText extends StatelessWidget {
       obscureText: obscure,
       style: TextStyle(fontSize: 20, color: Colors.blue),
       decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16)
+        ),
         labelText: label,
         labelStyle: TextStyle(fontSize: 20, color: Colors.grey),
         hintText: hint,
