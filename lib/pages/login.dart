@@ -19,54 +19,42 @@ class LoginPage extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: ListView(
         children: [
-          TextFormField(
-            style: TextStyle(
-             fontSize: 20,
-             color: Colors.blue
-            ),
-            decoration: InputDecoration(
-              labelText: 'Login',
-              labelStyle: TextStyle(
-                fontSize: 20,
-                color: Colors.grey
-              ),
-              hintText: 'Digite o login',
-              hintStyle: TextStyle(
-                  fontSize: 15,
-              ),
-            ),
+          _text('Login', 'Digite o login'),
+          SizedBox(
+            height: 10,
           ),
-          SizedBox(height: 10,),
-          TextFormField(
-            obscureText: true,
-            style: TextStyle(
-                fontSize: 20,
-                color: Colors.blue
-            ),
-            decoration: InputDecoration(
-              labelText: 'Senha',
-              labelStyle: TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey
-              ),
-              hintText: 'Digite senha',
-              hintStyle: TextStyle(
-                fontSize: 15,
-              ),
-            ),
+          _text('Senha', 'Digite a senha', obscure: true),
+          SizedBox(
+            height: 20,
           ),
-          SizedBox(height: 20,),
-          Container(
-            height: 46,
-            child: RaisedButton(
-                onPressed: () {},
-                color: Colors.blue,
-                child: Text('Login',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22))),
-          )
+          _button('Login')
         ],
+      ),
+    );
+  }
+
+  Container _button(String text) {
+    return Container(
+      height: 46,
+      child: RaisedButton(
+          onPressed: () {},
+          color: Colors.blue,
+          child:
+              Text(text, style: TextStyle(color: Colors.white, fontSize: 22))),
+    );
+  }
+
+  TextFormField _text(String label, String hint, {bool obscure = false}) {
+    return TextFormField(
+      obscureText: obscure,
+      style: TextStyle(fontSize: 20, color: Colors.blue),
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(fontSize: 20, color: Colors.grey),
+        hintText: hint,
+        hintStyle: TextStyle(
+          fontSize: 15,
+        ),
       ),
     );
   }
