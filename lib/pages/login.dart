@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final _tLogin = TextEditingController(text: 'usuario');
+
   final _tSenha = TextEditingController(text: '123');
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -24,12 +32,21 @@ class LoginPage extends StatelessWidget {
         child: ListView(
           children: [
             _text('Login', 'Digite o login',
-                controller: _tLogin, validator: _validateLogin),
+                controller: _tLogin,
+                validator: _validateLogin,
+                KeyboardType:TextInputType.text,
+                textInputAction: TextInputAction.next,
+
+              ),
             SizedBox(
               height: 10,
             ),
             _text('Senha', 'Digite a senha',
-                obscure: true, controller: _tSenha, validator: _validateSenha),
+                obscure: true, controller: _tSenha,
+                validator: _validateSenha,
+                KeyboardType:TextInputType.number,
+                textInputAction: TextInputAction.done,
+            ),
             SizedBox(
               height: 20,
             ),
@@ -48,8 +65,14 @@ class LoginPage extends StatelessWidget {
     bool obscure = false,
     required TextEditingController controller,
     required FormFieldValidator<String> validator,
+        required TextInputType KeyboardType,
+        required TextInputAction textInputAction,
+        FocusNode? focusNode,
   }) {
     return TextFormField(
+      focusNode: focusNode,
+      keyboardType: KeyboardType,
+      textInputAction: textInputAction,
       validator: validator,
       controller: controller,
       obscureText: obscure,
@@ -74,7 +97,9 @@ class LoginPage extends StatelessWidget {
           },
           color: Colors.blue,
           child:
-              Text(text, style: TextStyle(color: Colors.white, fontSize: 22))),
+              Text(text, style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22))),
     );
   }
 
