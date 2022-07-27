@@ -2,6 +2,9 @@ import 'package:carros/pages/widgets/app_button.dart';
 import 'package:carros/pages/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
+import '../utilis/nav.dart';
+import 'home_page.dart';
+
 class LoginPage extends StatefulWidget {
 
   @override
@@ -69,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
       String senha = _tSenha.text;
       print("Login: $login | Senha: $senha");
 
+      push(context, HomePage());
     }
 
     }
