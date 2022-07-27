@@ -64,12 +64,14 @@ class _LoginPageState extends State<LoginPage> {
   _onClickLogin(BuildContext context) {
     if (!_formKey.currentState!.validate()) {
       return;
+    } else {
+      String login = _tLogin.text;
+      String senha = _tSenha.text;
+      print("Login: $login | Senha: $senha");
+
     }
 
-    String login = _tLogin.text;
-    String senha = _tSenha.text;
-    print("Login: $login | Senha: $senha");
-  }
+    }
 
   String? _validateLogin(String? value) {
     if (value == null || value.isEmpty) {
