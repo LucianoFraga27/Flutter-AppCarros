@@ -22,10 +22,9 @@ class Usuario {
 
   static getRoles(Map<String, dynamic> map) {
     List list = map["roles"];
-    List<String> roles = [];
-    for(String role in list){
-      roles.add(role);
-    }
+
+    List<String> roles = list.map<String>((role)=>role.toString()).toList();
+
     return roles;
   }
 
