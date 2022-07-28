@@ -1,10 +1,11 @@
 import 'dart:convert';
+import 'package:carros/pages/api_response.dart';
 import 'package:carros/pages/usuario.dart';
 
 import 'package:http/http.dart' as http;
 
 class LoginApi{
-  static Future<Usuario> login(String login, String senha) async {
+  static Future<ApiResponse<Usuario>> login(String login, String senha) async {
 
     var url = Uri.parse('https://carros-springboot.herokuapp.com/api/v2/login');
 
@@ -27,8 +28,11 @@ class LoginApi{
 
     Map<String,dynamic> mapResponse = json.decode(response.body);
 
-    final user = Usuario.fromJson(mapResponse);
-
-    return user;
+    if (response.statusCode == 200) {
+      final user = Usuario.fromJson(mapResponse);
+      return ApiResponse.ok(user);
+    }else{
+      return ApiResponse.error(mapResponse["error"]);
+    }
   }
 }
