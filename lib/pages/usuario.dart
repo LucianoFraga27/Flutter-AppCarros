@@ -13,7 +13,7 @@ class Usuario {
     nome = map["nome"],
     email = map["email"],
     token = map["token"],
-    roles = map["roles"].map<String>((role)=>role.toString()).toList();
+    roles = map["roles"] != null ? map["roles"].map<String>((role)=>role.toString()).toList() : null;
 
   @override
   String toString() {
