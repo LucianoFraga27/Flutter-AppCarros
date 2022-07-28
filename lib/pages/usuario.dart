@@ -13,19 +13,11 @@ class Usuario {
     nome = map["nome"],
     email = map["email"],
     token = map["token"],
-    roles = getRoles(map);
+    roles = map["roles"].map<String>((role)=>role.toString()).toList();
 
   @override
   String toString() {
     return 'Usuario{login: $login, nome: $nome, email: $email, token: $token, roles: $roles}';
-  }
-
-  static getRoles(Map<String, dynamic> map) {
-    List list = map["roles"];
-
-    List<String> roles = list.map<String>((role)=>role.toString()).toList();
-
-    return roles;
   }
 
 }
